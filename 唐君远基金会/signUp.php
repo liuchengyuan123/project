@@ -64,7 +64,7 @@ if (!$ret)
     exit(json_encode($json_arr));
 }
 //var_dump($ret);
-$message = "密码:'$password'";
+$message = "密码:$password";
 $subject = "确认注册";
 $headers = "From: waytocode@163.com";
 mail($_POST[email], $subject, $message, $headers);
