@@ -18,7 +18,11 @@ class Window(object):
         self.back_right.pack(side=LEFT)
         self.back_left.pack_propagate(0)
         self.back_right.pack_propagate(0)
-
+'''
+左边时域
+上面img_label时域图像
+下面参数显示和调节
+'''
         default = "result_png/default.png"
         self.photo = PhotoImage(file=default)
         self.img_label = Label(master=self.back_left, image=self.photo, height=self.photo.height(),
@@ -38,7 +42,9 @@ class Window(object):
         args_label = Label(master=self.back_left, height=6, width=70, bg='blue')
         args_label.pack_propagate(0)
         args_label.pack()
-
+'''
+参数调节面板
+'''
         info = Label(args_label, width=30, height=6)
         info.grid_propagate(0)
         info.pack(side=LEFT)
@@ -70,7 +76,10 @@ class Window(object):
         self.auto_cover.set(1)
         Checkbutton(args, text='auto-cover', variable=self.auto_cover).grid(row=3, column=0)
         Button(args, text='OK', width=10, height=1, bg='white', command=self.plot_time).grid(row=3, column=1)
-
+'''
+mfcc面板
+上方图片，下方参数设置
+'''
         self.mfcc_pic = PhotoImage(file=default)
         self.mfcc_label = Label(master=self.back_right, image=self.mfcc_pic,
                            width=self.mfcc_pic.width(), height=self.mfcc_pic.height(), bg='blue')
@@ -79,7 +88,9 @@ class Window(object):
         self.new_mfcc_label = Label(master=self.mfcc_label, image=self.mfcc_pic,
                                 width=self.mfcc_pic.width(), height=self.mfcc_pic.height(), bg='red')
         self.new_mfcc_label.pack(side=TOP)
-
+'''
+参数选项
+'''
         vision = Label(master=self.back_right, width=70, height=5)
         vision.grid_propagate(0)
         vision.pack(side=TOP)
@@ -117,7 +128,9 @@ class Window(object):
         mfcc_add.grid(row=0, column=4, columnspan=2)
         self.add_area = Text(master=result, width=25, height=1)
         self.add_area.grid(row=0, column=6, sticky=E)
-
+'''
+类成员初始化
+'''
         self.fs = None
         self.audio = None
         self.lena = None
@@ -132,22 +145,24 @@ class Window(object):
         self.time_name = ''
         self.mfcc_name = ''
         self.lenb = 0
-
+'''
+绘制时域图像
+'''
     def plot_time(self):
         file_name = self.text_area.get('0.0', END)
-        if self.xl != file_name[11:-1]:
+        if self.xl != file_name[11:-1]:      #文件名已更改
             self.xl = file_name[11:-1]
-            self.fs, self.audio = wav.read(self.xl)
+            self.fs, self.audio = wav.read(self.xl)    #读出音频文件信息
             self.lena = self.audio.__len__()
-            self.time = self.lena / self.fs
+            self.time = self.lena / self.fs    #声音时间
             self.x_seq = np.arange(0, self.time, 1 / self.fs)
-            for i in range(3):
+            for i in range(3):    #写入文件信息
                 self.file_info[i].delete('0.0', END)
             self.file_info[0].insert(END, str(self.time))
             self.file_info[1].insert(END, str(self.fs))
             self.file_info[2].insert(END, str(self.lena))
 
-        self.start = int(self.time_arg[0].get('0.0', END))
+        self.start = int(self.time_arg[0].get('0.0', END))    #参数
         self.end = int(self.time_arg[1].get('0.0', END))
         # self.time_arg[0].insert(END, str(0))
         self.end = min(self.lena, self.end)
@@ -159,7 +174,7 @@ class Window(object):
         self.test_cnt += 1
         self.time_name = 'result_png/' + 'fir ' + str(self.test_cnt) + '.png'
         plt.clf()
-        plt.plot(self.x_seq[self.start: self.end], self.audio[self.start: self.end])
+        plt.plot(self.x_seq[self.start: self.end], self.audio[self.start: self.end])    #绘制图像
         plt.xlabel('time (s)')
         plt.savefig(self.time_name)
         self.file_info[3].delete('0.0', END)
@@ -172,11 +187,11 @@ class Window(object):
         self.new_img_label = Label(master=self.img_label, image=self.photo, height=self.photo.height(),
                                width=self.photo.width(), bg='red')
         self.new_img_label.pack()
-        self.plot_mfcc()
+        self.plot_mfcc()    #调用绘制mfcc图像函数
 
     def plot_mfcc(self):
         tmp_win = None
-        if self.Winfunc.get() == "Hamming":
+        if self.Winfunc.get() == "Hamming":    #窗函数
             tmp_win = np.hamming
         self.mfcc = mfcc(self.audio, samplerate=self.fs, winfunc=tmp_win)
         plt.clf()
@@ -189,7 +204,7 @@ class Window(object):
                     continue
                 tab.append(self.mfcc[i][dem])
             lcy.append(tab)
-        plt.plot(self.x_seq[:self.lenb], lcy)
+        plt.plot(self.x_seq[:self.lenb], lcy)    #绘制所选mfcc选项
         if self.auto_cover.get() == 1:
             self.mfcc_cnt -= 1
         self.mfcc_cnt += 1
@@ -208,10 +223,10 @@ class Window(object):
         self.new_mfcc_label.pack(side=TOP)
 
         str_ans = ''
-        arr = []
+        arr = []    #研究mfcc参数
         for i in range(self.lenb):
             arr.append(self.mfcc[i][0])
-        x = analyse(arr, 0, self.lenb, seg=10, std=0.15)
+        x = analyse(arr, 0, self.lenb, seg=10, std=0.15)    #判断结果
         print('x', x)
         if x < 0.045:
             str_ans = 'music!!!!'
