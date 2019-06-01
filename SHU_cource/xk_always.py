@@ -78,10 +78,15 @@ if __name__ == '__main__':
             ret = lcyy[T % 40].course('', '')    # 课程编号 教师号
             print(str(T) + ' :Thread ' + str(T % 40 + 1) + '  :' + str(time.time()-st))
             # print(ret.text)
+            soup = BeautifulSoup(ret.text, 'lxml')
+            all_td = soup.find_all('td')
+            print(all_td[10].text.strip())
             if ret.text.find('选课成功') != -1:
                 print('Succeed!')
                 break
-        except:
+        except Exception as e:
+            print(e)
+            print('trying to reconnect...')
             lcyy[T % 40] = client()
         T += 1
         
