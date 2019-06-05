@@ -41,6 +41,8 @@ class client:
         ret = self.lcy.post(url, headers=headers, data=data)
         url = 'http://xk.autoisp.shu.edu.cn/CourseSelectionStudent/FastInput'
         ret = self.lcy.get(url, headers=headers)
+        if ret.text.find('选课时间未到') != -1:
+            print('不可以选课')
 
     def course(self, CouNo, TeaNo):
         url = 'http://xk.autoisp.shu.edu.cn/CourseSelectionStudent/CtrlViewOperationResult'
