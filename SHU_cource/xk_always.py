@@ -72,7 +72,7 @@ if __name__ == '__main__':
     lcyy = []
     for i in range(40):
         lcyy.append(client())
-        print(str(i) + ' succeed!')
+        print(str(i) + ' login succeed!')
     T = 0
     while True:
         st = time.time()
