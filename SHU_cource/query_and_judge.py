@@ -21,8 +21,8 @@ class stu:
         ret = self.lcy.post(url, headers=self.headers, data=data)
         url = 'https://sso.shu.edu.cn/idp/Authn/UserPassword'
         data = {
-            'j_username': '17124056',
-            'j_password': '990221Lcy'
+            'j_username': '',
+            'j_password': ''
         }
         ret = self.lcy.post(url, headers=self.headers, data=data)
         soup = BeautifulSoup(ret.text, 'lxml')
