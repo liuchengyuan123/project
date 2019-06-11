@@ -39,6 +39,10 @@ class stu:
     def query(self):
         url = 'http://cj.shu.edu.cn/StudentPortal/ScoreQuery'
         ret = self.lcy.get(url, headers=self.headers)
+        url = 'http://cj.shu.edu.cn/StudentPortal/CtrlScoreQuery'
+        data = {'academicTermID': '20182'}
+        ret = self.lcy.get(url, headers=self.headers, data=data)
+        print(ret.text)
 
     def judge(self):
         url = 'http://cj.shu.edu.cn/StudentPortal/Evaluate'
