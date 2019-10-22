@@ -1,6 +1,7 @@
 from requests import *
 from bs4 import BeautifulSoup
 import random
+from selenium import webdriver
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36'
@@ -55,7 +56,7 @@ def grade():
     url = 'https://sso.shu.edu.cn/idp/Authn/UserPassword'
     data = {
         'j_username': '17124056',
-        'j_password': ''
+        'j_password': '990221Lcy'
     }
     ret = lcy.post(url, headers=headers, data=data)
     soup = BeautifulSoup(ret.text, 'lxml')
@@ -88,7 +89,24 @@ def grade():
     ub.append(all_td[72].text)
     return ub
 
+def get_name():
+    return '我叫机器人'
+
+def get_age():
+    return '我今年二十岁了'
+
+def say_hello():
+    return '你好'
+
+def music():
+    browser = webdriver.Chrome()
+    browser.get('https://music.163.com/')
 '''
 if __name__ == '__main__':
-    grade()
+    music()
+
+听歌
+收付钱
+查地图
+
 '''
