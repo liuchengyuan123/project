@@ -173,6 +173,30 @@ class Window(object):
             for line in ans:
                 self.talk_history.insert(END, line + '\n')
             return
+        if msg.find('你好') != -1:
+            ans = talk_online.say_hello()
+            speech.say(ans)
+            self.talk_history.insert(END, '\n------------------\n')
+            self.talk_history.insert(END, ans + '\n')
+            return
+        if msg.find('名字') != -1:
+            ans = talk_online.get_name()
+            speech.say(ans)
+            self.talk_history.insert(END, '\n------------------\n')
+            self.talk_history.insert(END, ans + '\n')
+            return
+        if msg.find('年龄') != -1 or msg.find('岁') != -1 or msg.find('你多大') != -1:
+            ans = talk_online.get_age()
+            speech.say(ans)
+            self.talk_history.insert(END, '\n------------------\n')
+            self.talk_history.insert(END, ans + '\n')
+            return
+        if msg.find('音乐') != -1 or msg.find('歌') != -1:
+            speech.say('为你打开网易云音乐')
+            talk_online.music()
+            self.talk_history.insert(END, '\n------------------\n')
+            self.talk_history.insert(END, '为你打开网易云音乐' + '\n')
+            return
 
 
     def mfcc_section(self):
