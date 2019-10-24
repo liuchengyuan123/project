@@ -35,12 +35,16 @@ module test_ADDA(
 	reg [7:0]dout;
 	reg div_clk;
 	reg div_clk2;
-
+	reg [3:0]freq, amp;
+	reg [6:0]base;
 initial begin
 		state <= 0;
 		wr <= 0;
 		rd <= 1;
 		SI <= 1;
+		freq <= 1;
+		amp <= 1;
+		base <= 0;
 	end
 
 	always @(posedge clk)
@@ -87,6 +91,8 @@ initial begin
 			default:state <= 0;
 		endcase
 		//led[2:0]<=dout[2:0];
+		freq <= dout[3:0];
+		amp <= dout[7:4];
 	end
 		assign d = (state==5'd3)?dout:8'bzzzz_zzzz;
 
@@ -163,19 +169,19 @@ initial begin
 	end
 	always @(posedge clk_125M)
 	begin
-		address <= address + 16'd2621;
+		address <= address + freq[3:0];
 		case(stat)
 			1: begin
-				DA_A <= sin_w;
-				DA_B <= sin_w;
+				DA_A <= sin_w / 16 * amp;
+				DA_B <= sin_w / 16 * amp;
 			end
 			2: begin
-				DA_A <= tri_w;
-				DA_B <= tri_w;
+				DA_A <= tri_w / 16 * amp;
+				DA_B <= tri_w / 16 * amp;
 			end
 			4: begin
-				DA_A <= squ_w;
-				DA_B <= squ_w;
+				DA_A <= squ_w / 16 * amp;
+				DA_B <= squ_w / 16 * amp;
 			end
 		endcase
 	end
