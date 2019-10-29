@@ -32,11 +32,11 @@ module test_ADDA(
 	wire clk_125M;
 	reg [4:0]state;
 	reg [7:0]buffer;
-	reg [7:0]dout;
+	reg [7:0]dout1, dout2;
 	reg div_clk;
 	reg div_clk2;
-	reg [3:0]freq, amp;
-	reg [6:0]base;
+	reg [7:0]freq, amp;
+	reg rdst;
 initial begin
 		state <= 0;
 		wr <= 0;
@@ -44,7 +44,7 @@ initial begin
 		SI <= 1;
 		freq <= 1;
 		amp <= 1;
-		base <= 0;
+		rdst <= 0;
 	end
 
 	always @(posedge clk)
@@ -59,20 +59,29 @@ initial begin
 	begin
 		case(state)
 			5'd0:   begin
-						if(rxf == 0)begin
+						if(rxf == 0)begin	// 若读数据的缓冲区为空，开始读
 							rd <= 0;
 							state <= 1;
 						end
 					end
 			5'd1:	begin
-						buffer <= d;
+						buffer <= d;	//读入数据
 						rd <= 1;
 						state <= 2;
 					end
 			5'd2:	begin
 						if(txe == 0)begin
 							wr <= 1;
-							dout <= buffer;
+							case(rdst)	// 处理读入的数据
+							0: begin	// 控制参数的状态机
+								dout1 <= buffer;
+								rdst <= 1; 
+								end
+							1: begin
+								dout2 <= buffer;
+								rdst <= 0;
+								end
+							endcase 
 							state <= 5'd3;
 						end
 					end
@@ -91,10 +100,10 @@ initial begin
 			default:state <= 0;
 		endcase
 		//led[2:0]<=dout[2:0];
-		freq <= dout[3:0];
-		amp <= dout[7:4];
+		freq <= dout1[7:0];
+		amp <= dout2[7:0];
 	end
-		assign d = (state==5'd3)?dout:8'bzzzz_zzzz;
+		//assign d = (state==5'd3)?dout:8'bzzzz_zzzz;
 
 	clk2	clk2_inst (
 	.inclk0 ( clk ),
@@ -149,7 +158,7 @@ initial begin
 	always @(posedge clk) begin 
 		q<=clear_key;
 		if({q,clear_key}==1)
-			e<=1;
+			e<=1;	// 有效信号
 		else 
 			e<=0;
 	end
@@ -172,16 +181,16 @@ initial begin
 		address <= address + freq[3:0];
 		case(stat)
 			1: begin
-				DA_A <= sin_w / 16 * amp;
-				DA_B <= sin_w / 16 * amp;
+				DA_A <= sin_w / 256 * amp;
+				DA_B <= sin_w / 256 * amp;
 			end
 			2: begin
-				DA_A <= tri_w / 16 * amp;
-				DA_B <= tri_w / 16 * amp;
+				DA_A <= tri_w / 256 * amp;
+				DA_B <= tri_w / 256 * amp;
 			end
 			4: begin
-				DA_A <= squ_w / 16 * amp;
-				DA_B <= squ_w / 16 * amp;
+				DA_A <= squ_w / 256 * amp;
+				DA_B <= squ_w / 256 * amp;
 			end
 		endcase
 	end
