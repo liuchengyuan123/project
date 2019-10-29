@@ -1,7 +1,6 @@
 module test_ADDA(
 	input clk,
 	//DA PINS
-	
 	output reg [13:0]DA_A,
 	output reg [13:0]DA_B,
 	output DA_CLK_A,
