@@ -2,7 +2,7 @@
 
 ### 主页面 MainMenu
 
-![https://github.com/liuchengyuan123/project/blob/master/GasDetector/M7RCRC4%5DU7G0%6041%604Q0U%5BW4.png]
+![](https://github.com/liuchengyuan123/project/blob/master/GasDetector/M7RCRC4%5DU7G0%6041%604Q0U%5BW4.png)
 
 主界面里有转到另外三个界面的按钮。
 主要内容就是模型在旋转。
