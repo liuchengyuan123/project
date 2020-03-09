@@ -18,7 +18,7 @@
 
 ### 打分界面 PracticeMenu
 
-![](https://github.com/liuchengyuan123/project/blob/master/GasDetector/DVH3YD%246IVWZY1PDREY.png)
+https://github.com/liuchengyuan123/project/blob/master/GasDetector/DVH3YD%246IV)W(ZY)(1PDREY.png
 
 这个界面是打分的主界面，打分分为两个部分：操作和问答。
 右侧关联的是三项操作环节的分数，满分一百分，完成相应操作后分数会显示。
@@ -34,19 +34,52 @@
 
 #### 调零、读数界面
 
-![](https://github.com/liuchengyuan123/project/blob/master/GasDetector/UES%24%25%5DXG336_00M%255UK%5D7%5DI.png)
+![](https://github.com/liuchengyuan123/project/blob/master/GasDetector/UES$%]XG336_00M%5UK]7]I.png)
 
 拉动拉条操作
 
 #### 问答界面
 
-![](https://github.com/liuchengyuan123/project/blob/master/GasDetector/_MUV8~J3D2KAOBHJ31J.png)
+https://github.com/liuchengyuan123/project/blob/master/GasDetector/_M(((UV8~J3D2KAOBH(J31J.png
 
 这个界面是用来问答打分的，在后面的输入框中输入答案，老师判题。
 
 ### 演示界面
 
-![](https://github.com/liuchengyuan123/project/blob/master/GasDetector/BDO5L%25FDE~J~Y~%5BQHVWZS(E.png)
+https://github.com/liuchengyuan123/project/blob/master/GasDetector/BDO5L%25FDE~J~Y~%5BQHVWZS(E.png
 播放动画，说明模型的各个零件，对应文字出现的时候，该物件略微放大。
 
+## 脚本Scripts
 
+`MainMenuButton.cs`
+包含主页面里所有按钮的动作函数
+
+`MainMenuRotate.cs`
+主页面模型旋转
+
+`ControlDense.cs`
+在设置界面退出时触发，保存此时设置好的气体浓度各是多少。
+
+`SettingMenuButton.cs`
+设置界面的拉条控制、数字变化以及退出按钮的响应。
+
+`PracticeMenuBack.cs`
+打分界面的按钮响应
+
+`P2Controller.cs`
+调零读数界面对拉条的控制，以及将读数转化为相应的分数，还有控制操作顺序。读数的显示值可以在设置界面中由教师设置。
+
+`ScoreDataController.cs`
+打分界面的右侧分数控制，顺序控制，以及按压吸气球次数统计，转化成分数。
+
+`ExtraController.cs`
+打分系统中的问答部分控制
+
+`PlayMenuBackButton.cs`
+演示系统的退出按钮控制
+
+### 动画 Animation
+涉及Animation的部分有：
+- 设置界面的弹出动画
+- 调零、读数界面的弹出动画
+- 演示界面的timeline（其中包含很多文字动画和零件缩放）
