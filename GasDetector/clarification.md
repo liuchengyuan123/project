@@ -34,7 +34,7 @@ https://github.com/liuchengyuan123/project/blob/master/GasDetector/DVH3YD%246IV)
 
 #### 调零、读数界面
 
-![](https://github.com/liuchengyuan123/project/blob/master/GasDetector/UES$%]XG336_00M%5UK]7]I.png)
+https://github.com/liuchengyuan123/project/blob/master/GasDetector/UES$%]XG336_00M%5UK]7]I.png
 
 拉动拉条操作
 
