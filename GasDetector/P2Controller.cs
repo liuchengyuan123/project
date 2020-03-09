@@ -30,6 +30,10 @@ public class P2Controller : MonoBehaviour {
             GameObject.Find("RezeroNum").GetComponent<TMP_Text>().text = (RezeroBar.value - (float)0.5).ToString();
         }
         stdBar.value = stdv;
+        if (RezeroDone)
+            pushcnt = 5;
+        else
+            pushcnt = 0;
 	}
 	
 	// Update is called once per frame
