@@ -39,12 +39,11 @@ https://github.com/liuchengyuan123/project/blob/master/GasDetector/UES$%]XG336_0
 拉动拉条操作
 
 #### 问答界面
-
+```
 https://github.com/liuchengyuan123/project/blob/master/GasDetector/_M(((UV8~J3D2KAOBH(J31J.png
+```
 
-这个界面是用来问答打分的，在后面的输入框中输入答案，老师判题。
-
-### 演示界面
+这个界面是用来问答打分的，在后面的输入框中输入答案，老师判题。     
 
 https://github.com/liuchengyuan123/project/blob/master/GasDetector/BDO5L%25FDE~J~Y~%5BQHVWZS(E.png
 播放动画，说明模型的各个零件，对应文字出现的时候，该物件略微放大。
