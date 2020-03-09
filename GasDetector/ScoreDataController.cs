@@ -10,11 +10,17 @@ public class ScoreDataController : MonoBehaviour
 
     bool RezeroDone, ReadDone;
     float RezeroError, ReadError;
-    int pushcnt;
+
+    public bool ableDetect;
+    public int pushcnt;
+
+    public GameObject ball;
 
     // Use this for initialization
     void Start()
     {
+        ball = GameObject.Find("OilTank002");
+        ableDetect = false;
         read_from_file();
         if (!RezeroDone)
             GameObject.Find("RezeroScore").GetComponent<TMP_Text>().text = "0/100";
@@ -30,7 +36,16 @@ public class ScoreDataController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (ableDetect && Input.GetMouseButtonUp(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Debug.Log(Input.mousePosition);
+            if (Mathf.Abs(Input.mousePosition.x - 710) < 80 && Mathf.Abs(Input.mousePosition.y - 210) < 80)
+            {
+                pushcnt = Mathf.Min(5, pushcnt + 1);
+                Debug.Log(":pushed");
+            }
+        }
     }
 
     public void RezeroCalled()
@@ -52,8 +67,7 @@ public class ScoreDataController : MonoBehaviour
             Debug.Log("You haven't rezero!");
             return;
         }
-        pushcnt = 5;
-        Debug.Log("You have beat 5 times, detecting over!");
+        ableDetect = true;
     }
 
     public void ReadCalled()
