@@ -9,6 +9,7 @@ public class MainMenuButton : MonoBehaviour {
     public void PlayButton()
     {
         Debug.Log("Play Button hitted!");
+        SceneManager.LoadScene("PlayMenu");
     }
 
     public void SettingButton()
