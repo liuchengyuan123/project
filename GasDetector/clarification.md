@@ -9,7 +9,7 @@
 
 ### 设置界面 SettingMenu
 
-![https://github.com/liuchengyuan123/project/blob/master/GasDetector/NEMWIUV3HS2%5D6S%60SU6S5V%7BR.png]
+![](https://github.com/liuchengyuan123/project/blob/master/GasDetector/NEMWIUV3HS2%5D6S%60SU6S5V%7BR.png)
 
 设置界面可以设置虚拟环境中的二氧化碳和甲烷气体浓度，三个进度条中前两个确定之后，第三个也就确定了。
 这个界面是供打分的人操作的（比如老师在考核前先调好浓度，之后作为给学生打分的标准）
@@ -18,7 +18,7 @@
 
 ### 打分界面 PracticeMenu
 
-![https://github.com/liuchengyuan123/project/blob/master/GasDetector/DVH3YD%246IV)W(ZY)(1PDREY.png]
+![](https://github.com/liuchengyuan123/project/blob/master/GasDetector/DVH3YD%246IVWZY1PDREY.png)
 
 这个界面是打分的主界面，打分分为两个部分：操作和问答。
 右侧关联的是三项操作环节的分数，满分一百分，完成相应操作后分数会显示。
@@ -34,14 +34,19 @@
 
 #### 调零、读数界面
 
-![https://github.com/liuchengyuan123/project/blob/master/GasDetector/UES%24%25%5DXG336_00M%255UK%5D7%5DI.png]
+![](https://github.com/liuchengyuan123/project/blob/master/GasDetector/UES%24%25%5DXG336_00M%255UK%5D7%5DI.png)
 
 拉动拉条操作
 
 #### 问答界面
 
-![https://github.com/liuchengyuan123/project/blob/master/GasDetector/_M(((UV8~J3D2KAOBH(J31J.png]
+![](https://github.com/liuchengyuan123/project/blob/master/GasDetector/_MUV8~J3D2KAOBHJ31J.png)
 
 这个界面是用来问答打分的，在后面的输入框中输入答案，老师判题。
+
+### 演示界面
+
+![](https://github.com/liuchengyuan123/project/blob/master/GasDetector/BDO5L%25FDE~J~Y~%5BQHVWZS(E.png)
+播放动画，说明模型的各个零件，对应文字出现的时候，该物件略微放大。
 
 
